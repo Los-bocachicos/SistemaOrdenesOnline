@@ -6,22 +6,18 @@ class Permiso(object):
 
 
 class Usuario(object):
-    pass
-
-
-class Cliente(str):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, name: str = ""):
+        self.name = name
 
 
 class Peticion:
-    def __init__(self, ip: str = "", usuario: Usuario = None, cliente: Cliente = ""):
+    def __init__(self, ip: str = "", usuario: Usuario = None, cliente: str = ""):
         self.ip: str = ip
         self.usuario = usuario
         self.cliente = cliente
 
     def __enviar(self):
-        pass
+        print(f"Enviando petición de {self.usuario.name} desde {self.cliente}@{self.ip}")
 
     def enviar(self, validaciones: List[int]):
         """
@@ -33,6 +29,8 @@ class Peticion:
         v = ConfiguracionValidacion.obtener_validador(validaciones)
         if v.validar(self):
             self.__enviar()
+        else:
+            print("No pasaron todas las validaciones")
 
 
 class Validacion:
@@ -42,22 +40,26 @@ class Validacion:
 
 class ValidacionAutenticacion(Validacion):
     def validar(self, peticion: Peticion) -> bool:
-        pass
+        print("Validando Autenticación")
+        return False
 
 
 class ValidacionSaneador(Validacion):
     def validar(self, peticion: Peticion) -> bool:
-        pass
+        print("Validando Saneador")
+        return False
 
 
 class ValidacionCache(Validacion):
     def validar(self, peticion: Peticion) -> bool:
-        pass
+        print("Validando Cache")
+        return True
 
 
 class ValidacionIP(Validacion):
     def validar(self, peticion: Peticion) -> bool:
-        pass
+        print("Validando IP")
+        return True
 
 
 class Validador:

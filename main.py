@@ -1,6 +1,9 @@
+from ordenes import Peticion, Permiso, Usuario
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+permissions = [Permiso()]
+usuario = Usuario("Mateo")
+peticion = Peticion(ip="8.8.8.8", usuario=usuario, cliente="cliente2")
+peticion.enviar([3, 2, 1])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# if __name__ == '__main__':
+#     pass
